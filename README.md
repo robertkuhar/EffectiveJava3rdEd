@@ -8,7 +8,7 @@ WingDing Spring 2018.
 |--------|-------------------------------------------|-------|-----------|
 | Apr 25 | CH01:  Introduction                       |    4  | BobK      |
 |        | CH02:  Creating and Destroying Objects    |   32  | BobK      |
-| May 09 | CH03:  3 Methods Common to All Objects    |   29  |           |
+| May 09 | CH03:  3 Methods Common to All Objects    |   29  | @ejain    |
 | May 23 | CH04:  Classes and Interfaces             |   44  |           |
 | Jun 13 | summer break                              |       |           |
 | Jun 27 | summer break                              |       |           |
