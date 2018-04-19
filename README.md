@@ -1,4 +1,6 @@
-# "Effective Java, 3rd Edition" by Joshua Bloch.  WingDing Spring 2018
+# "Effective Java, 3rd Edition" by Joshua Bloch.
+
+WingDing Spring 2018.
 
 ## Tentative Schedule
 
