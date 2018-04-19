@@ -1,6 +1,4 @@
-# EffectiveJava3rdEd
-
-WingDing Spring 2018 iteration:  "Effective Java, 3rd Edition" by Joshua Bloch
+# "Effective Java, 3rd Edition" by Joshua Bloch.  WingDing Spring 2018
 
 ## Tentative Schedule
 
