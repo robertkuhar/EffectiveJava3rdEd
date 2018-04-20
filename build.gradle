@@ -31,3 +31,11 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
+
+test {
+    testLogging {
+        // show standard out and standard error of the test JVM(s) on the console
+        showStandardStreams = true
+        exceptionFormat = 'full'
+    }
+}
