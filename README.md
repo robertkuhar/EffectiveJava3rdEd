@@ -5,11 +5,12 @@ WingDing Spring 2018.
 ## Tentative Schedule
 
 | Date   | Topic(s)                                | Pages | Moderator |
-|--------|-----------------------------------------|-------|-----------|
+|--------|-----------------------------------------|------:|-----------|
 | Apr 25 | CH01:  Introduction                     |    4  | BobK      |
 |        | CH02:  Creating and Destroying Objects  |   32  | BobK      |
-| May 09 | CH03:  Methods Common to All Objects    |   29  | @ejain    |
-| May 23 | CH04:  Classes and Interfaces           |   44  | DougP     |
+| May 09 | CH03:  Methods Common to All Objects    |   29  | ejain     |
+|        | CH04:  Classes and Interfaces (15-17)   |    ?  | ejain     |
+| May 23 | CH04:  Classes and Interfaces (18-25)   |    ?  | DougP     |
 | Jun 13 | summer break                            |       |           |
 | Jun 27 | summer break                            |       |           |
 | Jul 11 | summer break                            |       |           |
