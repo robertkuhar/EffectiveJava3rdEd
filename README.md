@@ -17,7 +17,7 @@ WingDing Spring 2018.
 | Jul 25 | summer break                            |       |           |
 | Aug 08 | summer break                            |       |           |
 | Aug 22 | summer break                            |       |           |
-| Sep 12 | CH05:  Generics                         |   40  | beau?     |
+| Sep 12 | CH05:  Generics                         |   40  | @beauhoyt |
 | Sep 26 | CH06:  Enums and Annotations            |   36  | JeffB     |
 | Oct 10 | CH07:  Lambdas and Streams              |   34  |           |
 | Oct 24 | CH08:  Methods                          |   34  |           |
