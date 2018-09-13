@@ -25,7 +25,7 @@ WingDing Spring 2018.
 | Nov 28     | CH09:  General Programming              |   32   |           |
 | Dec 12     | CH10:  Exceptions                       |   18   | BobK      |
 | Jan 09     | CH11:  Concurrency                      |   28   | DougP     |
-| --Jan 23-- | --CH12:  Serialization--                | --28-- |           |
+| ~~Jan 23~~ | ~~CH12:  Serialization~~                | ~~28~~ |           |
 
 ## Build
 
