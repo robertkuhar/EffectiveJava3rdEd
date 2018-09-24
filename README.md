@@ -18,11 +18,11 @@ WingDing Spring 2018.
 | Aug 08     | summer break                            |        |           |
 | Aug 22     | summer break                            |        |           |
 | Sep 12     | CH04:  Classes and Interfaces (18-25)   |   20   | DougP     |
-| Sep 26     | CH05:  Generics                         |   40   | @beauhoyt |
+| Sep 26     | CH05:  Generics                         |   40   | BobK      |
 | Oct 10     | CH06:  Enums and Annotations            |   36   | JeffB     |
 | Oct 24     | CH07:  Lambdas and Streams              |   34   | ejain     |
 | Nov 14     | CH08:  Methods                          |   34   | StanD     |
-| Nov 28     | CH09:  General Programming              |   32   |           |
+| Nov 28     | CH09:  General Programming              |   32   | @beauhoyt          |
 | Dec 12     | CH10:  Exceptions                       |   18   | BobK      |
 | Jan 09     | CH11:  Concurrency                      |   28   | DougP     |
 | ~~Jan 23~~ | ~~CH12:  Serialization~~                | ~~28~~ |           |
