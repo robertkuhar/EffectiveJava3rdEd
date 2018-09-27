@@ -9,7 +9,7 @@ public class Item30 {
     private static final Logger LOG = LoggerFactory.getLogger(Item30.class);
     // Generic singleton factory pattern
     private static UnaryOperator<Object> IDENTITY_FN = (t) -> {
-        LOG.info("t is a {}", t.getClass().getSimpleName());
+        LOG.info("t is a {} by {}", t.getClass().getSimpleName(), "Bob");
         return t;
     };
 
