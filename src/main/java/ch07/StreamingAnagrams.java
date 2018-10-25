@@ -13,8 +13,9 @@ public class StreamingAnagrams {
         Path dictionary = Paths.get(args[0]);
         int minGroupSize = Integer.parseInt(args[1]);
         try (Stream<String> words = Files.lines(dictionary)) {
-            words.collect(Collectors.groupingBy(word -> Anagrams.alphabetize(word)))
-                .values().stream()
+            words.collect(Collectors.groupingBy(Anagrams::alphabetize))
+                .values()
+                .stream()
                 .filter(group -> group.size() >= minGroupSize)
                 .forEach(g -> System.out.println(g.size() + ": " + g));
         }

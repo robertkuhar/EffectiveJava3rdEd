@@ -11,7 +11,8 @@ public class MersennePrimes {
     }
 
     public static void main(String[] args) {
-        primes().map(p -> TWO.pow(p.intValueExact()).subtract(BigInteger.ONE))
+        primes().map(p -> TWO.pow(p.intValueExact())
+            .subtract(BigInteger.ONE))
             .filter(mersenne -> mersenne.isProbablePrime(50))
             .limit(20)
             .forEach(System.out::println);
