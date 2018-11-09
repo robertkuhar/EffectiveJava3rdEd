@@ -1,5 +1,41 @@
 *  Chapter 8 Notes
 **  Item 49: Check parameters for validity
+   - Find errors as soon as possible after they occur. i.e. check method parameters at the
+     beginning of the method body.
+   * Document your assertions with =throws= clauses, but don't bother if the classes you're
+     using already do that.
+   * The [[https://docs.oracle.com/javase/9/docs/api/java/util/Objects.html#requireNonNull-T-java.lang.String-][Objects.requireNonNull()]] method is useful for checking nullity.
+
+     #+BEGIN_SRC java
+       public class Foo {
+           private final Bar bar;
+
+           public Foo(Bar bar) {
+               this.bar = Objects.requireNonNull(bar, "bar must not be null");
+           }
+       }
+     #+END_SRC
+
+     If =bar= is =null= the assignment of the member variable will throw a
+     =NullPointerException=.
+   * Use =assert= to check parameters for non-public methods since you have control over the
+     method caller.
+   * Don't check parameters if it is computationally expensive or you're doing it
+     anyway. Example: a check that every item in an input list is an even integer.
+
+     #+BEGIN_SRC java
+       public boolean allEven(List<Integer> list) {
+           //check for non-null, but not if every item in list is even
+           //since that's what I'm already calculating.
+       }
+     #+END_SRC
+
+   * Implicit validity is when an invalid parameter already throws an exception. It might
+     not throw the proper exception though in which case you should an exception
+     translation (catch one, throw another).
+
+   * Try to handle the widest case of validity.
+
 **  Item 50: Make defensive copies when needed
 **  Item 51: Design method signatures carefully
 **  Item 52: Use overloading judiciously
