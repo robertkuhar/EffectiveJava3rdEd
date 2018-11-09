@@ -34,9 +34,18 @@
      not throw the proper exception though in which case you should an exception
      translation (catch one, throw another).
 
-   * Try to handle the widest case of validity.
+   * Try to handle the widest case of validity. Postel's "Be liberal in what you accept,
+     conservative in what you return."
 
 **  Item 50: Make defensive copies when needed
+   * Write classes that are well behaved even when they are mistreated.
+   * If your constructor takes mutable type parameters, you need to defensive copy them.
+   * Make the defensive copies before you do validity checks.
+   * If your member variables are of mutable types, you need to defensive copy accessors.
+   * Always make a defensive copy of an internally stored array (or an array
+     view via =clone()=). Non-zero sized arrays are always mutable.
+   * Prefer immutable types for your member variables. That will make defensive copying
+     unnecessary.
 **  Item 51: Design method signatures carefully
 **  Item 52: Use overloading judiciously
 **  Item 53: Use varargs judiciously
