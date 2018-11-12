@@ -73,5 +73,7 @@
 
      This will mean you only do the array allocation when you call =foo= with 4 or more args.
 **  Item 54: Return empty collections or arrays, not nulls
+   * This one has been very useful to me over the years.
+   * You don't need to do null checks when you work with collections/arrays of things.
 **  Item 55: Return optionals judiciously
 **  Item 56: Write doc comments for all exposed API elements
