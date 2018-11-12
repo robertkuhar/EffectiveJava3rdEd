@@ -47,8 +47,31 @@
    * Prefer immutable types for your member variables. That will make defensive copying
      unnecessary.
 **  Item 51: Design method signatures carefully
+   * This item is actually 5 items
+     - Name your methods carefully
+     - Don't use too many
+     - Keep parameter lists small (4 or fewer) and avoid params of the same type.
+     - Use interfaces for parameter types. It allows more flexibility for the callers.
+     - Don't use boolean parameters. Use enums instead. (Is there ***ever*** a reason to use
+       boolean parameters?)
 **  Item 52: Use overloading judiciously
+   * Selection among overloaded methods is static, selection among overridden methods is
+     dynamic.
+   * There's a lot I don't understand in here. Need to reread more carefully.
 **  Item 53: Use varargs judiciously
+   * Varargs allocate an array for every invocation. If you know that most of the time you
+     won't need more than a few params consider an overridden set of methods
+
+     #+BEGIN_SRC java
+       public void foo();
+       public void foo(int x);
+       public void foo(int x, int y);
+       public void foo(int x, int y, int z);
+       public void foo(int x, int y, int z, int... rest);
+
+     #+END_SRC
+
+     This will mean you only do the array allocation when you call =foo= with 4 or more args.
 **  Item 54: Return empty collections or arrays, not nulls
 **  Item 55: Return optionals judiciously
 **  Item 56: Write doc comments for all exposed API elements
