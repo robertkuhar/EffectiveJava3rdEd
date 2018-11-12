@@ -76,4 +76,27 @@
    * This one has been very useful to me over the years.
    * You don't need to do null checks when you work with collections/arrays of things.
 **  Item 55: Return optionals judiciously
+   * [[https://docs.oracle.com/javase/9/docs/api/java/util/Optional.html][Optionals]] solve the problem of what to return besides a =null= or an exception. An
+     exception isn't always appropriate if the condition is not exceptional and a =null=
+     return forces the callers to do unsightly null checking lest they throw NPEs.
+   * =Optional<T>= is like a =Collection= of one.
+   * Optionals are like checked exceptions. They force you to deal with a potential empty
+     value.
+   * It also has convenient methods to do stuff like =orElse()= and =orElseThrow()= and
+     =orElseGet()=.
+   * Streams use Optionals a bunch. There's a nice code snippet to convert a Stream of
+     =Optional<T>= things to a Stream of =T=:
+     #+BEGIN_SRC java
+       streamOfOptionals.
+           .filter(Optional::isPresent)
+           .map(Optional::get)
+     #+END_SRC
+
+     but with Java 9 you don't need that because you can use the =flatMap(Optional::stream)=
+     method instead.
+   * Don't return collections/arrays in Optionals. Instead return empty
+     collections/arrays.
+   * There are special =Optional*= classes for primitive (autoboxed) types to save on
+     performance.
+   * Don't use Optionals as Map values, Map keys or collection/array values.
 **  Item 56: Write doc comments for all exposed API elements
