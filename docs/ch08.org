@@ -54,7 +54,7 @@
      - Use interfaces for parameter types. It allows more flexibility for the callers.
      - Don't use boolean parameters. Use enums instead. (Is there ***ever*** a reason to use
        boolean parameters?)
-**  Item 52: Use overloading judiciously
+**  TODO Item 52: Use overloading judiciously
    * Selection among overloaded methods is static, selection among overridden methods is
      dynamic.
    * There's a lot I don't understand in here. Need to reread more carefully.
@@ -100,3 +100,19 @@
      performance.
    * Don't use Optionals as Map values, Map keys or collection/array values.
 **  Item 56: Write doc comments for all exposed API elements
+   * Doc comments are a good thing.
+   * There are a bunch of new (to me) doc tags
+     * =@index= - This one adds terms to the javadoc index (besides classes, methods and
+       fields)
+       #+BEGIN_SRC java
+         /**
+          ,* I'd like to add the word {@index banana} to the index.
+          ,*/
+       #+END_SRC
+     * =@literal= - This escapes what would otherwise be illegal html characters like =<= and
+       =&=. Allows you to make your doc comments readable in the source file.
+     * =@code= - This does the same as =@literal= but also puts =<code>= tags around text so you
+       can put source code in your doc comments.
+     * =@implspec= - Comments marked with this tag document the contract between a method
+       and its subclass. This is where you discuss the internals. It seems like it might
+       be difficult to use correctly. It's not clear what an impl comment looks like.
