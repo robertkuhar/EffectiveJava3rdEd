@@ -63,7 +63,7 @@
    * This autoboxing thing deserves a closer look:
 
      #+HEADERS: :classname SetList
-     #+BEGIN_SRC java :tangle ../src/main/java/ch08/SetList.java :results output :exports results
+     #+BEGIN_SRC java :tangle ../src/main/java/ch08/SetList.java :results output :exports both
        import java.util.Set;
        import java.util.List;
        import java.util.TreeSet;
