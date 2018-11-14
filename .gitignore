@@ -270,3 +270,5 @@ gradle-app.setting
 
 
 # End of https://www.gitignore.io/api/osx,vim,linux,emacs,gradle,eclipse,windows,intellij
+/docs/SetList.class
+/docs/SetList.java
