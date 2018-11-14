@@ -1,7 +1,9 @@
-import java.util.Set;
-import java.util.List;
-import java.util.TreeSet;
+package ch08;
+
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class SetList {
     public static void main(String[] args) {
