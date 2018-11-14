@@ -1,0 +1,180 @@
+*  Chapter 8 Notes
+**  Item 49: Check parameters for validity
+   - Find errors as soon as possible after they occur. i.e. check method parameters at the
+     beginning of the method body.
+   * Document your assertions with =throws= clauses, but don't bother if the classes you're
+     using already do that.
+   * The [[https://docs.oracle.com/javase/9/docs/api/java/util/Objects.html#requireNonNull-T-java.lang.String-][Objects.requireNonNull()]] method is useful for checking nullity.
+
+     #+BEGIN_SRC java
+       public class Foo {
+           private final Bar bar;
+
+           public Foo(Bar bar) {
+               this.bar = Objects.requireNonNull(bar, "bar must not be null");
+           }
+       }
+     #+END_SRC
+
+     If =bar= is =null= the assignment of the member variable will throw a
+     =NullPointerException=.
+   * Use =assert= to check parameters for non-public methods since you have control over the
+     method caller.
+   * Don't check parameters if it is computationally expensive or you're doing it
+     anyway. Example: a check that every item in an input list is an even integer.
+
+     #+BEGIN_SRC java
+       public boolean allEven(List<Integer> list) {
+           //check for non-null, but not if every item in list is even
+           //since that's what I'm already calculating.
+       }
+     #+END_SRC
+
+   * Implicit validity is when an invalid parameter already throws an exception. It might
+     not throw the proper exception though in which case you should an exception
+     translation (catch one, throw another).
+
+   * Try to handle the widest case of validity. Postel's "Be liberal in what you accept,
+     conservative in what you return."
+
+**  Item 50: Make defensive copies when needed
+   * Write classes that are well behaved even when they are mistreated.
+   * If your constructor takes mutable type parameters, you need to defensive copy them.
+   * Make the defensive copies before you do validity checks.
+   * If your member variables are of mutable types, you need to defensive copy accessors.
+   * Always make a defensive copy of an internally stored array (or an array
+     view via =clone()=). Non-zero sized arrays are always mutable.
+   * Prefer immutable types for your member variables. That will make defensive copying
+     unnecessary.
+**  Item 51: Design method signatures carefully
+   * This item is actually 5 items
+     - Name your methods carefully
+     - Don't use too many
+     - Keep parameter lists small (4 or fewer) and avoid params of the same type.
+     - Use interfaces for parameter types. It allows more flexibility for the callers.
+     - Don't use boolean parameters. Use enums instead. (Is there *ever* a reason to use
+       boolean parameters?)
+** DONE Item 52: Use overloading judiciously
+   CLOSED: [2018-11-13 Tue 22:21]
+   * Selection among overloaded methods is static, selection among overridden methods is
+     dynamic.
+   * Avoid overloadings with the same parameter counts.
+   * When in doubt about overloading, just give the methods different names.
+   * This autoboxing thing deserves a closer look:
+
+     #+HEADERS: :classname SetList
+     #+BEGIN_SRC java :tangle ../src/main/java/ch08/SetList.java :results output :exports both
+       import java.util.Set;
+       import java.util.List;
+       import java.util.TreeSet;
+       import java.util.ArrayList;
+
+       public class SetList {
+           public static void main(String[] args) {
+               Set<Integer> set = new TreeSet<>();
+               List<Integer> list = new ArrayList<>();
+               List<Integer> list2 = new ArrayList<>();
+
+               for(int i = -3; i < 3; i++) {
+                   set.add(i);
+                   list.add(i);
+                   list2.add(i);
+               }
+               System.out.println("Before:");
+               System.out.println("\tSet: " + set);
+               System.out.println("\tList: " + list);
+               System.out.println("\tList2: " + list2);
+
+               for(int i = 0; i < 3; i++) {
+                   set.remove(i);
+                   list.remove(i);
+                   list2.remove((Integer) i);
+               }
+               System.out.println("After:");
+               System.out.println("\tSet: " + set);
+               System.out.println("\tList: " + list);
+               System.out.println("\tList2: " + list2);
+           }
+       }
+     #+END_SRC
+
+     #+RESULTS:
+     : Before:
+     : 	Set: [-3, -2, -1, 0, 1, 2]
+     : 	List: [-3, -2, -1, 0, 1, 2]
+     : 	List2: [-3, -2, -1, 0, 1, 2]
+     : After:
+     : 	Set: [-3, -2, -1]
+     : 	List: [-2, 0, 2]
+     : 	List2: [-3, -2, -1]
+
+     Wha??? It turns out the =set.remove()= removes each =Integer= while =list.remove()= method
+     removes position =int=. The zeroth element (=-3=), then the element at position 1 which
+     is now =-1= and finally the element at position 2 which becomes =1=.
+
+     The =List= interface has two overridden =remove()= methods, =remove(Object)= and
+     =remove(int)=. Bottom line: The =List= interface is broken with respect to autoboxing.
+
+   * Don't overload methods to take different functional interfaces in the same
+     position (=Runnable= vs. =Callable<T>= for example).
+
+   * The rules that govern which overloaded method gets called get very complex.
+
+**  Item 53: Use varargs judiciously
+   * Varargs allocate an array for every invocation. If you know that most of the time you
+     won't need more than a few params consider an overridden set of methods
+
+     #+BEGIN_SRC java
+       public void foo();
+       public void foo(int x);
+       public void foo(int x, int y);
+       public void foo(int x, int y, int z);
+       public void foo(int x, int y, int z, int... rest);
+
+     #+END_SRC
+
+     This will mean you only do the array allocation when you call =foo= with 4 or more args.
+**  Item 54: Return empty collections or arrays, not nulls
+   * This one has been very useful to me over the years.
+   * You don't need to do null checks when you work with collections/arrays of things.
+**  Item 55: Return optionals judiciously
+   * [[https://docs.oracle.com/javase/9/docs/api/java/util/Optional.html][Optionals]] solve the problem of what to return besides a =null= or an exception. An
+     exception isn't always appropriate if the condition is not exceptional and a =null=
+     return forces the callers to do unsightly null checking lest they throw NPEs.
+   * =Optional<T>= is like a =Collection= of one.
+   * Optionals are like checked exceptions. They force you to deal with a potential empty
+     value.
+   * It also has convenient methods to do stuff like =orElse()= and =orElseThrow()= and
+     =orElseGet()=.
+   * Streams use Optionals a bunch. There's a nice code snippet to convert a Stream of
+     =Optional<T>= things to a Stream of =T=:
+     #+BEGIN_SRC java
+       streamOfOptionals.
+           .filter(Optional::isPresent)
+           .map(Optional::get)
+     #+END_SRC
+
+     but with Java 9 you don't need that because you can use the =flatMap(Optional::stream)=
+     method instead.
+   * Don't return collections/arrays in Optionals. Instead return empty
+     collections/arrays.
+   * There are special =Optional*= classes for primitive (autoboxed) types to save on
+     performance.
+   * Don't use Optionals as Map values, Map keys or collection/array values.
+**  Item 56: Write doc comments for all exposed API elements
+   * Doc comments are a good thing.
+   * There are a bunch of new (to me) doc tags
+     * =@index= - This one adds terms to the javadoc index (besides classes, methods and
+       fields)
+       #+BEGIN_SRC java
+         /**
+          ,* I'd like to add the word {@index banana} to the index.
+          ,*/
+       #+END_SRC
+     * =@literal= - This escapes what would otherwise be illegal html characters like =<= and
+       =&=. Allows you to make your doc comments readable in the source file.
+     * =@code= - This does the same as =@literal= but also puts =<code>= tags around text so you
+       can put source code in your doc comments.
+     * =@implspec= - Comments marked with this tag document the contract between a method
+       and its subclass. This is where you discuss the internals. It seems like it might
+       be difficult to use correctly. It's not clear what an impl comment looks like.

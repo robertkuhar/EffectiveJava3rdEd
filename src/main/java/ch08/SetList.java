@@ -9,15 +9,26 @@ public class SetList {
     public static void main(String[] args) {
         Set<Integer> set = new TreeSet<>();
         List<Integer> list = new ArrayList<>();
-        for (int i = -3; i < 3; i++) {
+        List<Integer> list2 = new ArrayList<>();
+
+        for(int i = -3; i < 3; i++) {
             set.add(i);
             list.add(i);
+            list2.add(i);
         }
-        System.out.printf(" set: %s\nlist: %s\n", set, list);
-        for (int i = 0; i < 3; i++) {
+        System.out.println("Before:");
+        System.out.println("\tSet: " + set);
+        System.out.println("\tList: " + list);
+        System.out.println("\tList2: " + list2);
+
+        for(int i = 0; i < 3; i++) {
             set.remove(i);
             list.remove(i);
+            list2.remove((Integer) i);
         }
-        System.out.printf(" set: %s\nlist: %s\n", set, list);
+        System.out.println("After:");
+        System.out.println("\tSet: " + set);
+        System.out.println("\tList: " + list);
+        System.out.println("\tList2: " + list2);
     }
 }
