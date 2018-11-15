@@ -21,7 +21,7 @@ WingDing Spring 2018.
 | Sep 26     | CH05:  Generics                         |   40   | BobK      |
 | Oct 10     | CH06:  Enums and Annotations            |   36   | BobK      |
 | Oct 24     | CH07:  Lambdas and Streams              |   34   | ejain     |
-| Nov 14     | CH08:  Methods                          |   34   | StanD     |
+| Nov 14     | CH08:  [Methods](docs/ch08.org)         |   34   | StanD     |
 | Nov 28     | CH09:  General Programming              |   32   | @beauhoyt |
 | Dec 12     | CH10:  Exceptions                       |   18   | BobK      |
 | Jan 09     | CH11:  Concurrency                      |   28   | DougP     |
