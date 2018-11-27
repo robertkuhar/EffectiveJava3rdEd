@@ -12,7 +12,6 @@ public class App {
     System.out.println(new App().getGreeting());
   }
 
-
     static void copy(String src, String dst) throws IOException {
       try (InputStream in = new FileInputStream(src);
            OutputStream out = new FileOutputStream(dst)) {
